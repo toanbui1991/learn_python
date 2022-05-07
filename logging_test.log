@@ -1,0 +1,10 @@
+2022-05-04 11:49:56,248:DEBUG:Add: 20 + 10 = 30
+2022-05-04 11:49:56,249:DEBUG:Sub: 20 - 10 = 10
+2022-05-04 11:49:56,249:DEBUG:Mul: 20 * 10 = 200
+2022-05-04 11:49:56,249:DEBUG:Div: 20 / 10 = 2.0
+2022-05-04 11:50:27,079:INFO:Created Employee: John Smith - John.Smith@email.com
+2022-05-04 11:50:27,079:INFO:Created Employee: Corey Schafer - Corey.Schafer@email.com
+2022-05-04 11:50:27,080:INFO:Created Employee: Jane Doe - Jane.Doe@email.com
+2022-05-04 11:51:05,131:INFO:Created Employee: John Smith - John.Smith@email.com
+2022-05-04 11:51:05,131:INFO:Created Employee: Corey Schafer - Corey.Schafer@email.com
+2022-05-04 11:51:05,132:INFO:Created Employee: Jane Doe - Jane.Doe@email.com
