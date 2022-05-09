@@ -7,9 +7,12 @@ Thank You
 """
 #sender setting config
 #The mail addresses and password
-sender_address = 'djangouserone@gmail.com'
-sender_pass = 'Buixuantoan@916263'
-receiver_address = 'djangousertwo@gmail.com'
+# sender_address = 'djangouserone@gmail.com'
+# sender_pass = 'Buixuantoan@916263'
+# receiver_address = 'toanbui1991@gmail.com'
+sender_address = 'toanbui1991@gmail.com'
+sender_pass = 'gvxxhugnhshnqhgi'
+receiver_address = 'djangouserone@gmail.com'
 #Setup the MIME
 message = MIMEMultipart()
 message['From'] = sender_address
