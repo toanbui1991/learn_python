@@ -4,3 +4,5 @@ config = {
     'PG_DB': {'host': 'localhost', 'port': '5433', 'user': 'postgres', 'password': 'Buixuantoan@916263'},
     'MSSQL_DB': {'host': 'localhost', 'port': 1433, 'user': 'sa', 'password': 'Buixuantoan@916263', 'database': 'Northwind'}
 }
+
+test = ''
