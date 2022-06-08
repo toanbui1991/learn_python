@@ -1,3 +1,5 @@
 config.py
 /venv
 *.log
+.env
+ignore_test.py
