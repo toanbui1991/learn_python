@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import re
 
 #search vs match, use Module Contents
@@ -26,8 +26,6 @@ else:
 #with Match just need to know method group, start, end
 email = "tony@tiremove_thisger.net"
 m = re.search("remove_this", email)
-=======
-import re
 
 #search vs match, use Module Contents
 match = re.match("c", "abcdef") #return Match Object, find match at start of string
@@ -54,5 +52,4 @@ else:
 #with Match just need to know method group, start, end
 email = "tony@tiremove_thisger.net"
 m = re.search("remove_this", email)
->>>>>>> 83f62a4723ede795ba2a52293b61bce757c2d1b4
 print(email[m.start():m.end()])
