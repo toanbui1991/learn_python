@@ -101,7 +101,7 @@ googleapiclient.http.HttpRequest.execute = _delay_retry(
     googleapiclient.http.HttpRequest.execute)
 
 
-class GrabSheet():
+class GoogleSheet():
     """A class that represents a Googlesheet.
 
     A Googlesheet is represented by its metadata and its active sheet. Any
@@ -162,14 +162,14 @@ class GrabSheet():
             Number of attempts to call Google API before raising an exception.
         refresh_timeout : int, optional
             Time in seconds between 2 refresh of sheet metadata. If invalid or
-            less than `GrabSheet.MIN_REFRESH_TIMEOUT`, then the latter is used.
+            less than `GoogleSheet.MIN_REFRESH_TIMEOUT`, then the latter is used.
 
         Examples
         --------
         Open an existing sheet. The sheet must be shared to 
         `creds['client_email']` before.
 
-        >>> sheet = GrabSheet(
+        >>> sheet = GoogleSheet(
                 creds, sheet_id='18aK01koZwea-re-xvmajPbKz1jjz5mtDyACo-7BrouE')
         >>> sheet.id
         '18aK01koZwea-re-xvmajPbKz1jjz5mtDyACo-7BrouE'
@@ -185,7 +185,7 @@ class GrabSheet():
 
         Create a new Googlesheet. 
 
-        >>> sheet = GrabSheet(creds)
+        >>> sheet = GoogleSheet(creds)
         >>> sheet.id
         '1dq35daf07ea-rIkNYa90=-dasdasdCo-g7Br1ouE'
 
@@ -228,15 +228,15 @@ class GrabSheet():
 
         """
         if scopes is None:
-            scopes = GrabSheet.DEF_SCOPES
+            scopes = GoogleSheet.DEF_SCOPES
         self._scopes = scopes
         self._credentials = credentials
         self.num_retries = num_retries
         try:
             self.refresh_timeout = max(
-                refresh_timeout, GrabSheet.MIN_REFRESH_TIMEOUT)
+                refresh_timeout, GoogleSheet.MIN_REFRESH_TIMEOUT)
         except TypeError:
-            self.refresh_timeout = GrabSheet.MIN_REFRESH_TIMEOUT
+            self.refresh_timeout = GoogleSheet.MIN_REFRESH_TIMEOUT
         # Hashable keys for saving service
         creds_id = tuple(sorted(credentials.values())) + tuple(scopes)
         try:
@@ -260,7 +260,7 @@ class GrabSheet():
 
 
     def __repr__(self):
-        return f'GrabSheet(credentials=..., sheet_id="{self.id}")'
+        return f'GoogleSheet(credentials=..., sheet_id="{self.id}")'
 
 
     @property
@@ -319,7 +319,7 @@ class GrabSheet():
 
 
     def __getitem__(self, key):
-        """Return a new GrabSheet with active_sheet set as the `key`.
+        """Return a new GoogleSheet with active_sheet set as the `key`.
 
         The key can be either an integer (starting at index 0), or the name of
         the sheet. A new object is returned, but the `_service` used is shared
@@ -332,7 +332,7 @@ class GrabSheet():
 
         Returns
         -------
-        A new `<GrabSheet>` object with `key` as its `active_sheet`.
+        A new `<GoogleSheet>` object with `key` as its `active_sheet`.
 
         """
         self._update_metadata()
@@ -696,7 +696,7 @@ class GrabSheet():
         
         Returns
         -------
-        A `<GrabSheet> object with active sheet set from `range_`.
+        A `<GoogleSheet> object with active sheet set from `range_`.
 
         Examples
         --------

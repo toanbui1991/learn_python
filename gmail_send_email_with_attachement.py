@@ -10,6 +10,7 @@ subject = "An email with attachment from Python"
 body = "This is an email with attachment sent from Python"
 sender_email = "toanbui1991@gmail.com"
 receiver_email = "djangouserone@gmail.com"
+#we have to use app password
 password = config.get("email_app_password")
 
 # Create a multipart message and set headers
