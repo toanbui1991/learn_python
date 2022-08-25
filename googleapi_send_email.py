@@ -1,23 +1,27 @@
 import smtplib
 from config_v2 import config  
-# creates SMTP session
-s = smtplib.SMTP('smtp.gmail.com', 587)
-  
-# start TLS for security
-s.starttls()
-  
-# Authentication with app password
-# app password is the concept of authenticate email for a bot which present real user for automation
-# go to manage your google account (https://myaccount.google.com/) and then search for app passwords.
-# follow the instruction to generate app password for your account and use it to authenticate your personal email
-app_password = config.get("email_app_password")
-s.login("toanbui1991@gmail.com", app_password)
-  
-# message to be sent
-message = "Message_you_need_to_send"
-  
-# sending the mail
-s.sendmail("toanbui1991@gmail.com", "djangouserone@gmail.com", message)
-  
-# terminating the session
-s.quit()
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+mail_content = """Hello,
+This is a simple mail. There is only text, no attachments are there The mail is sent using Python SMTP library.
+Thank You"""
+#The mail addresses and password
+sender_address = 'toanbui1991@gmail.com'
+sender_pass = config.get("email_app_password")
+receiver_address = 'djangouserone@gmail.com'
+#Setup the MIME
+message = MIMEMultipart()
+message['From'] = sender_address
+message['To'] = receiver_address
+message['Subject'] = 'A test mail sent by Python. It has an attachment.'   #The subject line
+#The body and the attachments for the mail
+message.attach(MIMEText(mail_content, 'plain'))
+#Create SMTP session for sending the mail
+session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+session.starttls() #enable security
+session.login(sender_address, sender_pass) #login with mail_id and password
+text = message.as_string()
+session.sendmail(sender_address, receiver_address, text)
+session.quit()
+print('Mail Sent')
