@@ -910,7 +910,7 @@ class GoogleSheet():
         >>> sheet.share('someone@grabtaxi.com', role='reader', send_notif=True)
         
         """
-        drive = GrabDrive(self._credentials)
+        drive = GoogleDrive(self._credentials)
         drive.share(self.id, email=email, role=role, 
                     send_notif=send_notif)
 
@@ -1084,10 +1084,10 @@ class GoogleSheet():
         return range_grid
 
 
-class GrabDrive():
+class GoogleDrive():
     """Google Drive class.
 
-    A GrabDrive instance is using `googleapiclient.discovery.Resource` for
+    A GoogleDrive instance is using `googleapiclient.discovery.Resource` for
     querying Google API.
 
     Attributes
@@ -1104,9 +1104,9 @@ class GrabDrive():
                   'https://www.googleapis.com/auth/drive']
     
     def __init__(self, credentials, scopes=None, num_retries=3):
-        """Create an instance of GrabDrive.
+        """Create an instance of GoogleDrive.
 
-        A GrabDrive instance allows the user to easily manipulate files from
+        A GoogleDrive instance allows the user to easily manipulate files from
         a Google Drive (personal or shared). 
 
         Parameters
@@ -1121,7 +1121,7 @@ class GrabDrive():
         
         Examples
         --------
-        >>> drive = GrabDrive(creds)
+        >>> drive = GoogleDrive(creds)
         >>> drive.list_children_id(
         ...     parent_ids='1GHFMwSvRg5NKw5zUNa1XQRQLZ-8362fQ')
         >>> drive.get_metadata('1GHFMwSvRg5NKw5zUNa1XQRQLZ-8362fQ')
@@ -1144,7 +1144,7 @@ class GrabDrive():
     
         """
         if scopes is None:
-            self.scopes = list(GrabDrive.DEF_SCOPES)
+            self.scopes = list(GoogleDrive.DEF_SCOPES)
         else:
             self.scopes = list(scopes)
         
@@ -1163,7 +1163,7 @@ class GrabDrive():
 
 
     def __repr__(self):
-        return f'GrabDrive(credentials=...)'
+        return f'GoogleDrive(credentials=...)'
 
 
     def get_metadata(self, file_id, fields=None):
