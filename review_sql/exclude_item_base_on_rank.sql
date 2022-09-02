@@ -1,20 +1,28 @@
 -- group by number of challenge
 -- each group of number of challenge choose one, except group which have max number of challenge.
-
--- learning:
-  --one: using count(1) to count number of row
-  --two: using count(1) over(parition by nchalleges) and max(nchalleges) over() with window function syntax
-WITH c AS(
-    SELECT hacker_id, Count(1) nchallenges
-      FROM Challenges
-    GROUP BY hacker_id
-), mc AS (
-    SELECT *, Count(1) OVER(PARTITION BY nchallenges) xrpt, Max(nchallenges) OVER() mch
-     FROM c
+--step one: find nchalleges of each hacker
+with num_challenges as (
+    select 
+    hacker_id
+    , count(1) as nchallenges
+    from challenges
+    group by hacker_id
+),
+--step two: find filter condition, each nchallenges group take 1, except max group
+challenges_condition as (
+    select hacker_id
+    , nchallenges
+    , count(*) over(partition by nchallenges) as group_challenges
+    , max(nchallenges) over() as max_challenges
+    from num_challenges
 )
-SELECT h.hacker_id, h.name, mc.nchallenges
-  FROM mc
-  JOIN Hackers h ON h.hacker_id = mc.hacker_id
- WHERE mc.xrpt = 1
-    OR mc.nchallenges = mch
-ORDER BY mc.nchallenges DESC, h.hacker_id;
+--get name, filter and order
+select
+ha.hacker_id
+, ha.name
+, ch.nchallenges
+from hackers as ha
+left join challenges_condition as ch on ha.hacker_id = ch.hacker_id
+where ch.group_challenges = 1
+or ch.nchallenges = max_challenges
+order by ch.nchallenges desc, ha.hacker_id
