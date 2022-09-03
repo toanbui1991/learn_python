@@ -1,3 +1,4 @@
+-- problem: aggregate and then filter with window function (number of element in group, compare element with max of element)
 -- group by number of challenge
 -- each group of number of challenge choose one, except group which have max number of challenge.
 --step one: find nchalleges of each hacker
@@ -12,7 +13,7 @@ with num_challenges as (
 challenges_condition as (
     select hacker_id
     , nchallenges
-    , count(*) over(partition by nchallenges) as group_challenges
+    , count(1) over(partition by nchallenges) as group_challenges
     , max(nchallenges) over() as max_challenges
     from num_challenges
 )

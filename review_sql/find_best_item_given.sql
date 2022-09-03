@@ -1,4 +1,5 @@
--- find the best wands, minimum number of gold with combination of power and age and it's have to be not evil
+--problem: find the best item with on attribute and criteria by other two attribute
+--problem: find the best wands, minimum number of gold with combination of power and age and it's have to be not evil
 
 -- find wands that is not evil 
 with not_evil as (
