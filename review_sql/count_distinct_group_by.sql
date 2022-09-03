@@ -1,17 +1,14 @@
--- count number of employee, manager, senior manager, leader manager and get company code and founder name
-SELECT 
-    c.company_code, 
-    c.founder, 
-    COUNT(DISTINCT e.lead_manager_code),
-    COUNT(DISTINCT e.senior_manager_code),
-    COUNT(DISTINCT e.manager_code),
-    COUNT(DISTINCT e.employee_code)
-FROM 
-    company c
-LEFT JOIN
-    employee e
-ON 
-    e.company_code = c.company_code
-GROUP BY 
-    c.company_code, c.founder
-order by c.company_code asc
+-- problem: count number of item in multiple hierachy table
+-- problem: count employee, manager, senior manager, lead manager. get company code and founder name
+
+select
+ca.company_code
+, ca.founder
+, count(distinct em.lead_manager_code)
+, count(distinct em.senior_manager_code)
+, count(distinct em.manager_code)
+, count(distinct em.employee_code)
+from company as ca
+left join employee as em on ca.company_code = em.company_code
+group by ca.company_code, ca.founder
+order by ca.company_code asc
