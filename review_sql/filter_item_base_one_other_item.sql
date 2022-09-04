@@ -1,4 +1,5 @@
--- find students which have slary is lowery than her friends
+--problem: given one-one relation (best friend) compare between two.
+-- find students which have slary is lowery than her best friends
 -- this is correct because one student have only one best friend.
 Select s.name FROM students s
 INNER JOIN friends f ON f.id = s.id

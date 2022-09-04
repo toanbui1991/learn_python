@@ -1,3 +1,6 @@
+-- problem: two level of aggregation, and then filter and order by the result of aggregation
+-- problem: filter and order base on hacker total score. However, total score need to computer by two level of aggregate.
+-- two level of aggregate (hacker_id, challenge_id and then hacker_id)
 -- find the score for each challenge_id, group by level 1
 -- find total score for each hacker_id, group by level 2
 -- order by score desc, order by hacker_id asc

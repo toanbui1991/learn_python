@@ -1,6 +1,10 @@
 -- problem: aggregate and then filter with window function (number of element in group, compare element with max of element)
 -- group by number of challenge
+-- problem: commpute number of challenges created by students (aggregate), and each group of number of challenge choose one student
+-- except group which archive max number of challenge
 -- each group of number of challenge choose one, except group which have max number of challenge.
+
+-- learning: the syntax of window functions
 --step one: find nchalleges of each hacker
 with num_challenges as (
     select 

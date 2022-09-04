@@ -1,3 +1,8 @@
+--problem: in a consecutive data table find data point which is not consecutive
+--problem: start_date and end date different is one and project will have all task in consecutive
+-- solution:
+    --find row which is start of project and find row which is end of project
+    --join with condition of start_index = end_index to find project.
 -- find star row of consecutive rows
 with t1  as (select start_date,
          row_number()over(order by start_Date) as s_rn
