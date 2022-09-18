@@ -1,3 +1,4 @@
+-- problem: find two subset and use union all to combine subset to one.
 --problem: get shortest and longest city name 
 --learning:
   --one: order by column_one desc, column_two asc

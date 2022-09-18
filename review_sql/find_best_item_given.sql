@@ -2,6 +2,7 @@
 --problem: find the best wands, minimum number of gold with combination of power and age and it's have to be not evil
 
 -- solution: using where with inner subquery
+
 -- find wands that is not evil 
 with not_evil as (
     select 

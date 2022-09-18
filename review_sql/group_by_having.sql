@@ -1,4 +1,5 @@
--- find hacker which have complete fullscore more than 1
+--problem: aggregate one attribute and then filter base on that attribute (group by + having)
+-- problem: find hacker which have complete fullscore more than 1
 -- learning:
     -- one: we can calculate number of fullscore submission with sum and if function
     -- two: using where, group, having and order in one statement

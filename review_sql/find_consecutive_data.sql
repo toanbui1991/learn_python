@@ -3,6 +3,8 @@
 -- solution:
     --find row which is start of project and find row which is end of project
     --join with condition of start_index = end_index to find project.
+-- learn:
+  --one: using datediff(datepart, start_date, end_date)
 -- find star row of consecutive rows
 with t1  as (select start_date,
          row_number()over(order by start_Date) as s_rn
