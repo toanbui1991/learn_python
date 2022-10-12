@@ -1,5 +1,10 @@
 /*
 problem: find entertainer who have all customer style (entertainer style will match customer style )
+solution:
+    one: find combination of artist and their style
+    two: find combination of customer and their style
+    three: jon one and two by style key. group by customer and artist to counter number of commen style of customer and artist.
+    four: compare between three (number of commnet style between customer and aritest) with the number of style of the customer
 */
 WITH CustStyles AS --customer and their style
   (SELECT C.CustomerID, C.CustFirstName, 
@@ -20,15 +25,27 @@ SELECT CustStyles.CustomerID, CustStyles.CustFirstName,
     CustStyles.CustLastName, EntStyles.EntStageName
 FROM CustStyles INNER JOIN EntStyles
   ON CustStyles.StyleName = EntStyles.StyleName
+  -- group by both customer and artist
 GROUP BY CustStyles.CustomerID, CustStyles.CustFirstName,
      CustStyles.CustLastName, EntStyles.EntStageName
-HAVING COUNT(EntStyles.StyleName) = --this is the most important line
+HAVING COUNT(EntStyles.StyleName) = --number of style an artist have which is also have in customer, check with number of style customer have
   (SELECT COUNT(StyleName) 
    FROM CustStyles AS CS1
    WHERE CS1.CustomerID = CustStyles.CustomerID)
 
 
-   WITH CustPreferences AS
+/*
+problem: given
+    one: customer and their style reference(customer, style, rank of style)
+    two: artist and their style strength(artist, style, rank of style strength)
+    find artist which have their stop style match with customer top two love style
+solution:
+    one: find customer, style and customer-style refernece with 
+    two: find artist, style and artiest-style strength
+    three: cross join between one and two and then filter with where to match condition
+*/
+
+WITH CustPreferences AS --get customer and style but with reference column (1, 2, 3)
 (SELECT C.CustomerID, C.CustFirstName, C.CustLastName, 
        MAX((CASE WHEN MP.PreferenceSeq = 1  
                  THEN MP.StyleID 
@@ -43,7 +60,7 @@ HAVING COUNT(EntStyles.StyleName) = --this is the most important line
       ON MP.CustomerID = C.CustomerID 
    GROUP BY C.CustomerID, C.CustFirstName, C.CustLastName),
 
-EntStrengths AS
+EntStrengths AS --get artiest and their style with strength reference col
 (SELECT E.EntertainerID, E.EntStageName, 
        MAX((CASE WHEN ES.StyleStrength = 1 
                  THEN ES.StyleID 
