@@ -28,4 +28,7 @@ my solution:
         rank() over(parition by group order by score desc, player_id)
         choose first player from rank
         )
+main take away:
+    compute player_score from matches
+    rank() over(group by group order by score desc, player_id) is simple
 */
